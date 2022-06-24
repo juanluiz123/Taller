@@ -1,0 +1,553 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "manifest",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/manifest": {
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Add a new pet to the store",
+        "description": "",
+        "operationId": "addPet",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Manifest": {
+      "type": "object",
+      "properties": {
+        "mesaggeType": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "load": {
+          "$ref": "#/definitions/load"
+        }
+      },
+      "xml": {
+        "name": "Order"
+      }
+    },
+    "load": {
+      "type": "object",
+      "properties": {
+        "container": {
+          "$ref": "#/definitions/container"
+        }
+      }
+    },
+    "container": {
+      "type": "object",
+      "properties": {
+        "shipmentLoadNumber": {
+          "type": "string"
+        },
+        "scacCode": {
+          "type": "string"
+        },
+        "modeOfTransport": {
+          "type": "string"
+        },
+        "containerNumber": {
+          "type": "string"
+        },
+        "vesselNumber": {
+          "type": "string"
+        },
+        "voyageNumber": {
+          "type": "string"
+        },
+        "flightNumber": {
+          "type": "string"
+        },
+        "licensePlate": {
+          "type": "string"
+        },
+        "containerType": {
+          "type": "string"
+        },
+        "uniqueShipmentNumberLoadPlan": {
+          "type": "string"
+        },
+        "supplierCode": {
+          "type": "string"
+        },
+        "supplierName": {
+          "type": "string"
+        },
+        "grossWeight": {
+          "type": "string"
+        },
+        "weightUom": {
+          "type": "string"
+        },
+        "netWeight": {
+          "type": "string"
+        },
+        "netWeightUom": {
+          "type": "string"
+        },
+        "portOfLading": {
+          "type": "string"
+        },
+        "asnNumber": {
+          "type": "string"
+        },
+        "qtyAsn": {
+          "type": "string"
+        },
+        "manifestQty": {
+          "type": "string"
+        },
+        "manifestUom": {
+          "type": "string"
+        },
+        "seal": {
+          "type": "string"
+        },
+        "route": {
+          "type": "string"
+        },
+        "countryOfExport": {
+          "type": "string"
+        },
+        "totalPieceCount": {
+          "type": "string"
+        },
+        "shipments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/shipment"
+          }
+        }
+      }
+    },
+    "shipment": {
+      "type": "object",
+      "properties": {
+        "grossWeight": {
+          "type": "string"
+        },
+        "groTripNumberssWeight": {
+          "type": "string"
+        },
+        "currencyUom": {
+          "type": "string"
+        },
+        "hazmatUndg": {
+          "type": "string"
+        },
+        "commodity": {
+          "type": "string"
+        },
+        "portOfExport": {
+          "type": "string"
+        },
+        "countryOfExport": {
+          "type": "string"
+        },
+        "conveyanceNumber": {
+          "type": "string"
+        },
+        "carrierScac": {
+          "type": "string"
+        },
+        "tripNumber": {
+          "type": "string"
+        },
+        "billType": {
+          "type": "string"
+        },
+        "shipmentControlNumber": {
+          "type": "string"
+        },
+        "masterbill": {
+          "type": "string"
+        },
+        "housebill": {
+          "type": "string"
+        },
+        "invoiceDate": {
+          "type": "string"
+        },
+        "purchaseOrder": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/definitions/shipFrom"
+        },
+        "shipTo": {
+          "$ref": "#/definitions/shipTo"
+        },
+        "supplier": {
+          "$ref": "#/definitions/supplier"
+        },
+        "consignee": {
+          "$ref": "#/definitions/consignee"
+        },
+        "ultimateConsignee": {
+          "$ref": "#/definitions/ultimateConsignee"
+        },
+        "importer": {
+          "$ref": "#/definitions/importer"
+        },
+        "exporter": {
+          "$ref": "#/definitions/exporter"
+        },
+        "responsibleParty": {
+          "$ref": "#/definitions/responsibleParty"
+        }
+      }
+    },
+    "shipFrom": {
+      "type": "object",
+      "properties": {
+        "shipFromCode": {
+          "type": "string"
+        },
+        "shipFromName": {
+          "type": "string"
+        },
+        "shipFromAddress": {
+          "type": "string"
+        },
+        "shipFromCity": {
+          "type": "string"
+        },
+        "shipFromState": {
+          "type": "string"
+        },
+        "shipFromCountry": {
+          "type": "string"
+        },
+        "shipFromZip": {
+          "type": "string"
+        }
+      }
+    },
+    "shipTo": {
+      "type": "object",
+      "properties": {
+        "shipToCode": {
+          "type": "string"
+        },
+        "shipToName": {
+          "type": "string"
+        },
+        "shipToAddress": {
+          "type": "string"
+        },
+        "shipToCity": {
+          "type": "string"
+        },
+        "shipToState": {
+          "type": "string"
+        },
+        "shipToCountry": {
+          "type": "string"
+        },
+        "shipToZip": {
+          "type": "string"
+        },
+        "specialInstructions": {
+          "type": "string"
+        }
+      }
+    },
+    "supplier": {
+      "type": "object",
+      "properties": {
+        "entityAddressType1": {
+          "type": "string"
+        },
+        "supplierCode": {
+          "type": "string"
+        },
+        "supplierName": {
+          "type": "string"
+        },
+        "supplierAddress": {
+          "type": "string"
+        },
+        "supplierCity": {
+          "type": "string"
+        },
+        "supplierState": {
+          "type": "string"
+        },
+        "supplierCountry": {
+          "type": "string"
+        },
+        "supplierZip": {
+          "type": "string"
+        }
+      }
+    },
+    "consignee": {
+      "type": "object",
+      "properties": {
+        "entityAddressType2": {
+          "type": "string"
+        },
+        "consigneeCode": {
+          "type": "string"
+        },
+        "consigneeName": {
+          "type": "string"
+        },
+        "consigneeAddress": {
+          "type": "string"
+        },
+        "consigneeCity": {
+          "type": "string"
+        },
+        "consigneeStateProvinceCode": {
+          "type": "string"
+        },
+        "consigneeCountry": {
+          "type": "string"
+        },
+        "consigneePostalCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ultimateConsignee": {
+      "type": "object",
+      "properties": {
+        "entityAddressType3": {
+          "type": "string"
+        },
+        "ultimateConsigneeCode": {
+          "type": "string"
+        },
+        "ultimateConsigneeName": {
+          "type": "string"
+        },
+        "ultimateConsigneeAddress": {
+          "type": "string"
+        },
+        "ultimateConsigneeCity": {
+          "type": "string"
+        },
+        "ultimateConsigneeStateProvinceCode": {
+          "type": "string"
+        },
+        "ultimateConsigneeCountry": {
+          "type": "string"
+        },
+        "ultimateConsigneEpostalCode": {
+          "type": "string"
+        }
+      }
+    },
+    "importer": {
+      "type": "object",
+      "properties": {
+        "entityAddressType4": {
+          "type": "string"
+        },
+        "importerCode": {
+          "type": "string"
+        },
+        "importerName": {
+          "type": "string"
+        },
+        "importerAddress": {
+          "type": "string"
+        },
+        "importerCity": {
+          "type": "string"
+        },
+        "importerStateProvinceCode": {
+          "type": "string"
+        },
+        "importerCountry": {
+          "type": "string"
+        }
+      }
+    },
+    "exporter": {
+      "type": "object",
+      "properties": {
+        "entityAddressType5": {
+          "type": "string"
+        },
+        "exporterCode": {
+          "type": "string"
+        },
+        "exporterName": {
+          "type": "string"
+        },
+        "exporterAddress": {
+          "type": "string"
+        },
+        "exporterCity": {
+          "type": "string"
+        },
+        "exporterStateProvinceCode": {
+          "type": "string"
+        },
+        "exporterCountry": {
+          "type": "string"
+        }
+      }
+    },
+    "responsibleParty": {
+      "type": "object",
+      "properties": {
+        "entityAddressType6": {
+          "type": "string"
+        },
+        "responsiblePartyCode": {
+          "type": "string"
+        },
+        "responsiblePartyName": {
+          "type": "string"
+        },
+        "responsiblePartyAddress": {
+          "type": "string"
+        },
+        "responsiblePartyCity": {
+          "type": "string"
+        },
+        "responsiblePartyStateProvinceCode": {
+          "type": "string"
+        },
+        "responsiblePartyCountry": {
+          "type": "string"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "properties": {
+        "partNumber": {
+          "type": "string"
+        },
+        "partDescription": {
+          "type": "string"
+        },
+        "partUnitInvoiceValue": {
+          "type": "string"
+        },
+        "invoiceQty": {
+          "type": "string"
+        },
+        "invoiceQtyUom": {
+          "type": "string"
+        },
+        "invoiceGrossWeight": {
+          "type": "string"
+        },
+        "invoiceGrossWeightUom": {
+          "type": "string"
+        },
+        "invoiceNetWeight": {
+          "type": "string"
+        },
+        "invoiceNetWeightUom": {
+          "type": "string"
+        },
+        "invoiceClauseCustoms": {
+          "type": "string"
+        },
+        "htsTariffNumber": {
+          "type": "string"
+        },
+        "countryOfOrigin": {
+          "type": "string"
+        },
+        "countryOfexport": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
